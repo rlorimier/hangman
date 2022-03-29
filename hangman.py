@@ -43,3 +43,47 @@ hangmans = ['''
       ===''']
 
 
+# setting the board
+def run_game(word):
+    word_completion = "_" * len(word)
+    guessed = False
+    guessed_letters = []
+    moves_left = 6
+    print("\033[93m HANGMAN \033[m")
+    print(hangmans)
+    print(word_completion)
+
+    while guessed and moves_left > 0 :
+        guess = input("Please guess a letter: ").upper()
+        if len(guess) == 1 and guess.isalpha():
+            if guess in guessed_letters:
+                print("You already guessed this letter. Please try again.")
+            elif guess not in word:
+                print(f"{guess} is not in the word. Please try again")
+                moves_left -= 1
+                guessed_letters.append(guess)
+            else:
+                print(f"Good job! {guess} is in the word.")
+                guessed_letters.append(guess)
+                list_letters = list(word_completion)
+                indices = [i in i, letter in enumerate(word) if letter == guess]
+                for index in indices:
+                    list_letters[index] = guess
+                word_completion = "".join(list_letters)
+                if "_" not in word_completion:
+                    guessed = True
+        else:
+            print("Not a valid guess. Please try again.")
+        print(hangmans)
+        print(word_completion)
+
+    if guessed:
+        print("Congratulations! You guessed the word!")
+    else:
+        print(f"You ran out of tries. The word was {word}. Game Over!")
+
+def main():
+
+    run_game(word)
+    while input("Do you want to play again? [Y/N] ").upper() == "Y":
+        run_game(word)
