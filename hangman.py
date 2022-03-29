@@ -2,16 +2,26 @@ import random
 
 # list with hangmans
 def hangman(moves_left):
-    hangmans = ['''
+    hangmans = [ '''
     +---+
-        |
-        |
+     O   |
+    /|\  |
+    / \  |
+        ===''', '''
+    +---+
+     O   |
+    /|\  |
+    /    |
+        ===''', '''
+    +---+
+     O   |
+    /|\  |
         |
         ===''', '''
     +---+
-    O   |
-        |
-        |
+     O   |
+    /|   |
+         |
         ===''', '''
     +---+
     O   |
@@ -20,23 +30,13 @@ def hangman(moves_left):
         ===''', '''
     +---+
     O   |
-    /|   |
+        |
         |
         ===''', '''
     +---+
-    O   |
-    /|\  |
         |
-        ===''', '''
-    +---+
-    O   |
-    /|\  |
-    /    |
-        ===''', '''
-    +---+
-    O   |
-    /|\  |
-    / \  |
+        |
+        |
         ===''']
 
     return hangmans[moves_left]
@@ -57,9 +57,9 @@ def run_game(word):
     moves_left = 6
     print("\033[93m HANGMAN \033[m")
     print(hangman(moves_left))
-    print(word_completion)
+    print(word_completion + "\n")
 
-    while guessed and moves_left > 0 :
+    while not guessed and moves_left > 0 :
         guess = input("Please guess a letter: ").upper()
         if len(guess) == 1 and guess.isalpha():
             if guess in guessed_letters:
@@ -81,12 +81,13 @@ def run_game(word):
         else:
             print("Not a valid guess. Please try again.")
         print(hangman(moves_left))
-        print(word_completion)
+        print(word_completion + "\n")
+        print(guessed_letters)
 
     if guessed:
-        print("Congratulations! You guessed the word!")
+        print("\033[95mCongratulations! You guessed the word!\033[m")
     else:
-        print(f"You ran out of tries. The word was {word}. Game Over!")
+        print(f"\033[96mYou ran out of tries. The word was {word}. Game Over!\033[m")
 
 # main function to run the game
 def main():
