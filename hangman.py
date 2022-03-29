@@ -55,7 +55,7 @@ def run_game(word):
     guessed = False
     guessed_letters = []
     moves_left = 6
-    print("\033[93m HANGMAN \033[m")
+    print("\033[92m H A N G M A N \033[m")
     print(hangman(moves_left))
     print(word_completion + "\n")
 
@@ -82,7 +82,7 @@ def run_game(word):
             print("Not a valid guess. Please try again.")
         print(hangman(moves_left))
         print(word_completion + "\n")
-        print(guessed_letters)
+        print(str(guessed_letters)[1:-1] + "\n")
 
     if guessed:
         print("\033[96mCongratulations! You guessed the word!\033[m")
