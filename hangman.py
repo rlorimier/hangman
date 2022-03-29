@@ -65,11 +65,11 @@ def run_game(word):
             if guess in guessed_letters:
                 print("You already guessed this letter. Please try again.")
             elif guess not in word:
-                print(f"{guess} is not in the word. Please try again")
+                print(f"You guessed wrong! Letter {guess} is not in the word.")
                 moves_left -= 1
                 guessed_letters.append(guess)
             else:
-                print(f"Good job! {guess} is in the word.")
+                print(f"You guessed correctly! Letter {guess} is in the word.")
                 guessed_letters.append(guess)
                 list_letters = list(word_completion)
                 indices = [i for i, letter in enumerate(word) if letter == guess]
@@ -87,7 +87,7 @@ def run_game(word):
     if guessed:
         print("\033[96mCongratulations! You guessed the word!\033[m")
     else:
-        print(f"\033[95mYou ran out of tries. The word was {word}. Game Over!\033[m")
+        print(f"\033[95mYou ran out of tries. The word was {word}.\nGame Over!\033[m")
 
 # main function to run the game
 def main():
