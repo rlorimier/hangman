@@ -85,9 +85,9 @@ def run_game(word):
         print(guessed_letters)
 
     if guessed:
-        print("\033[95mCongratulations! You guessed the word!\033[m")
+        print("\033[96mCongratulations! You guessed the word!\033[m")
     else:
-        print(f"\033[96mYou ran out of tries. The word was {word}. Game Over!\033[m")
+        print(f"\033[95mYou ran out of tries. The word was {word}. Game Over!\033[m")
 
 # main function to run the game
 def main():
@@ -96,6 +96,7 @@ def main():
     while input("Do you want to play again? [Y/N] ").upper() == "Y":
         word = get_word()
         run_game(word)
+    print("See you next time")
 
 
 if __name__ == "__main__":
