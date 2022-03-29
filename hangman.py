@@ -88,7 +88,7 @@ def run_game(word):
     if guessed: #guessed=true
         print("\033[96mCongratulations! You guessed the word!\033[m")
     else: #moves_left=0 
-        print(f"\033[95mYou ran out of tries. The word was {word}.\nGame Over!\033[m")
+        print(f"\033[91mYou ran out of tries. The word was {word}.\nGame Over!\033[m")
 
 # main function to run the game
 def main():
