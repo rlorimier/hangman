@@ -1,56 +1,62 @@
 import random
 
-# selecting the word from a list
-words_list = "squirrel bear whale coyote hedgehog lion dolphin crocodile raccoon hyena monkey panda deer leopard kangaroo tiger zebra giraffe hippo wolf elephant gorilla snake eagle antelope vulture panther parrot rhino shark rabbit reindeer lizard leopard koala frog turtle toucan spider sparrow scorpion moose iguana capybara butterfly bison raven falcon sheep buffalo wildebeest baboon ostrich flamingo jackal".upper().split()
-word = random.choice(words_list)
-
 # list with hangmans
-hangmans = ['''
-   +---+
-       |
-       |
-       |
-      ===''', '''
-   +---+
-   O   |
-       |
-       |
-      ===''', '''
-   +---+
-   O   |
-   |   |
-       |
-      ===''', '''
-   +---+
-   O   |
-  /|   |
-       |
-      ===''', '''
-   +---+
-   O   |
-  /|\  |
-       |
-      ===''', '''
-   +---+
-   O   |
-  /|\  |
-  /    |
-      ===''', '''
-   +---+
-   O   |
-  /|\  |
-  / \  |
-      ===''']
+def hangman(moves_left):
+    hangmans = ['''
+    +---+
+        |
+        |
+        |
+        ===''', '''
+    +---+
+    O   |
+        |
+        |
+        ===''', '''
+    +---+
+    O   |
+    |   |
+        |
+        ===''', '''
+    +---+
+    O   |
+    /|   |
+        |
+        ===''', '''
+    +---+
+    O   |
+    /|\  |
+        |
+        ===''', '''
+    +---+
+    O   |
+    /|\  |
+    /    |
+        ===''', '''
+    +---+
+    O   |
+    /|\  |
+    / \  |
+        ===''']
+
+    return hangmans[moves_left]
 
 
-# setting the board
+# selecting the word from a list
+def get_word():
+    words_list = "squirrel bear whale coyote hedgehog lion dolphin crocodile raccoon hyena monkey panda deer leopard kangaroo tiger zebra giraffe hippo wolf elephant gorilla snake eagle antelope vulture panther parrot rhino shark rabbit reindeer lizard leopard koala frog turtle toucan spider sparrow scorpion moose iguana capybara butterfly bison raven falcon sheep buffalo wildebeest baboon ostrich flamingo jackal".upper().split()
+    word = random.choice(words_list)
+    return word
+
+
+# setting the game
 def run_game(word):
     word_completion = "_" * len(word)
     guessed = False
     guessed_letters = []
     moves_left = 6
     print("\033[93m HANGMAN \033[m")
-    print(hangmans)
+    print(hangman(moves_left))
     print(word_completion)
 
     while guessed and moves_left > 0 :
@@ -66,7 +72,7 @@ def run_game(word):
                 print(f"Good job! {guess} is in the word.")
                 guessed_letters.append(guess)
                 list_letters = list(word_completion)
-                indices = [i in i, letter in enumerate(word) if letter == guess]
+                indices = [i for i, letter in enumerate(word) if letter == guess]
                 for index in indices:
                     list_letters[index] = guess
                 word_completion = "".join(list_letters)
@@ -74,7 +80,7 @@ def run_game(word):
                     guessed = True
         else:
             print("Not a valid guess. Please try again.")
-        print(hangmans)
+        print(hangman(moves_left))
         print(word_completion)
 
     if guessed:
@@ -82,8 +88,14 @@ def run_game(word):
     else:
         print(f"You ran out of tries. The word was {word}. Game Over!")
 
+# main function to run the game
 def main():
-
+    word = get_word()
     run_game(word)
     while input("Do you want to play again? [Y/N] ").upper() == "Y":
+        word = get_word()
         run_game(word)
+
+
+if __name__ == "__main__":
+    main()
