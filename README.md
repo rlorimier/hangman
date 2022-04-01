@@ -27,4 +27,21 @@ You can chek the game clicking HERE
 
 ## Credits
 ### Content
+- List of animals 
+
+## Creating a Repository and Deploying
+- The steps to create a new repository:
+  1) Logged in my GitHub page, clicked in Repositories then New.
+  2) Typed a name for the respository, selected Public and Add README file, then Create repository.
+  3) On my GitHub Desktop, selected Add and then Clone a repository.
+  4) On my Visual Studio Code (VSC), selected Open Folder and then selected the new created folder to start coding.
+
+- The steps to commit and push commits:
+  1) Every alteration on the files was being saved automatically.
+  2) GitHub Desktop is connected with VSC and showns every changes made on the files.
+  3) After every significant amount of coding is time for local commits:
+     - On GitHub Desktop, type in a name for the commit and click Commit to Main.
+  4) After a work day, the last local commit is done and then click in Push Origim to commit all local commits to GitHub repository.
+
+- To Deploy:
 
